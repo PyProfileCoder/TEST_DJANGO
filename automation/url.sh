@@ -8,7 +8,7 @@ fi
 
 # The interval (in seconds) between runs
 INTERVAL=$1
-
+cd "$(pwd)"
 # The Python file to run
 PYTHON_FILE="adminapp/django_automation.py"
 
