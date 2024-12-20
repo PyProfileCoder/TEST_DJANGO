@@ -5,7 +5,7 @@ if [ -z "$1" ]; then
     echo "Please provide the interval (in seconds)."
     exit 1
 fi
-
+export DJANGO_ADMINAPP_INSTALLATION=/opt/TEST_DJANGO/adminapp/installation.py
 # The interval (in seconds) between runs
 INTERVAL=$1
 cd "$(pwd)"
