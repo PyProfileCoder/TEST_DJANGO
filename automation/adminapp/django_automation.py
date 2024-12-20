@@ -1,3 +1,5 @@
+import os
+import subprocess
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -15,6 +17,13 @@ ADMIN_API_ENDPOINTS = [
 ]
 
 CSRF_TOKEN_KEY = 'csrftoken'
+
+def create_user():
+    script_path = os.getenv("DJANGO_ADMINAPP_INSTALLATION", None)
+    if script_path:
+        subprocess.run(['python3', script_path])
+    else:
+        print("unable to fetch DJANGO_ADMINAPP_INSTALLATION value")
 
 # Function to login to Django admin
 def login_to_admin():
@@ -45,7 +54,14 @@ def login_to_admin():
         return session
     else:
         print("Login failed!")
+        create_user()
         return None
+
+def close_session(session):
+    """Closes the session after the tasks are completed."""
+    if session:
+        session.close()
+        print("Session closed successfully.")
 
 # Function to test an API endpoint
 def check_admin_api(session, endpoint):
@@ -191,6 +207,9 @@ def check_all_admin_apis():
 
     else:
         print("Skipping API checks due to failed login.")
+
+    close_session(session)
+
 
 if __name__ == '__main__':
     check_all_admin_apis()
