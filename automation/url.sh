@@ -22,6 +22,7 @@ fi
 while true; do
     echo "Running $PYTHON_FILE..."
     python3 "$PYTHON_FILE"
+    python3 "adminapp/poll_app_automation.py"
     echo "Next run in $INTERVAL seconds..."
     sleep "$INTERVAL"
 done
