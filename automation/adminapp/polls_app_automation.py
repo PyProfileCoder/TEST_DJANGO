@@ -9,6 +9,7 @@ DELETE_QUESTION_URL = BASE_URL + 'polls/question/'
 DELETE_CHOICE_URL = BASE_URL + 'polls/choice/'
 
 # Configuration
+ADMIN_BASE_URL = 'http://127.0.0.1:8000/admin'  # Replace with your admin base URL
 USERNAME = 'admin'  # Replace with your admin username
 PASSWORD = 'admin'  # Replace with your admin password
 
@@ -24,7 +25,7 @@ CSRF_TOKEN_KEY = 'csrftoken'
 
 # Function to login to Django admin
 def login_to_admin():
-    login_url = f'{BASE_URL}/login/'
+    login_url = f'{ADMIN_BASE_URL}/login/'
     session = requests.Session()
 
     # Fetch the login page first to get CSRF token
